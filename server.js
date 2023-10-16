@@ -116,6 +116,14 @@ app.post("/bookRoom", (req, res) => {
       });
   }
 
+  if(bookings.roomId < roomId){
+    return res
+    .status(400)
+    .json({error:"Entered Room is not available."})
+
+    
+  }
+
   // Check if the room is available
   if (!isRoomAvailable(roomId, date, startTime, endTime)) {
     return res
